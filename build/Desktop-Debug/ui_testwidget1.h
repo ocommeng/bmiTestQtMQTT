@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -22,6 +23,8 @@ class Ui_TestWidget1
 public:
     QPushButton *pushButton;
     QLCDNumber *lcdNumber;
+    QLabel *clignoDroit;
+    QLabel *clignoGauche;
 
     void setupUi(QWidget *TestWidget1)
     {
@@ -34,6 +37,16 @@ public:
         lcdNumber = new QLCDNumber(TestWidget1);
         lcdNumber->setObjectName("lcdNumber");
         lcdNumber->setGeometry(QRect(200, 100, 341, 181));
+        clignoDroit = new QLabel(TestWidget1);
+        clignoDroit->setObjectName("clignoDroit");
+        clignoDroit->setGeometry(QRect(640, 290, 91, 71));
+        clignoDroit->setPixmap(QPixmap(QString::fromUtf8("arrow-right-gray.png")));
+        clignoDroit->setScaledContents(true);
+        clignoGauche = new QLabel(TestWidget1);
+        clignoGauche->setObjectName("clignoGauche");
+        clignoGauche->setGeometry(QRect(60, 290, 91, 71));
+        clignoGauche->setPixmap(QPixmap(QString::fromUtf8("arrow-left-gray.png")));
+        clignoGauche->setScaledContents(true);
 
         retranslateUi(TestWidget1);
 
@@ -44,6 +57,8 @@ public:
     {
         TestWidget1->setWindowTitle(QCoreApplication::translate("TestWidget1", "TestWidget1", nullptr));
         pushButton->setText(QCoreApplication::translate("TestWidget1", "Incr\303\251menter", nullptr));
+        clignoDroit->setText(QString());
+        clignoGauche->setText(QString());
     } // retranslateUi
 
 };

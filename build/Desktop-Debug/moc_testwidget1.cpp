@@ -27,7 +27,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_TestWidget1_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[20];
     char stringdata0[12];
     char stringdata1[12];
     char stringdata2[1];
@@ -37,6 +37,7 @@ struct qt_meta_stringdata_TestWidget1_t {
     char stringdata6[13];
     char stringdata7[8];
     char stringdata8[26];
+    char stringdata9[27];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_TestWidget1_t::offsetsAndSizes) + ofs), len 
@@ -50,7 +51,8 @@ Q_CONSTINIT static const qt_meta_stringdata_TestWidget1_t qt_meta_stringdata_Tes
         QT_MOC_LITERAL(46, 15),  // "receivedMessage"
         QT_MOC_LITERAL(62, 12),  // "QMqttMessage"
         QT_MOC_LITERAL(75, 7),  // "message"
-        QT_MOC_LITERAL(83, 25)   // "receiveClignoDroitMessage"
+        QT_MOC_LITERAL(83, 25),  // "receiveClignoDroitMessage"
+        QT_MOC_LITERAL(109, 26)   // "receiveClignoGaucheMessage"
     },
     "TestWidget1",
     "isConnected",
@@ -60,7 +62,8 @@ Q_CONSTINIT static const qt_meta_stringdata_TestWidget1_t qt_meta_stringdata_Tes
     "receivedMessage",
     "QMqttMessage",
     "message",
-    "receiveClignoDroitMessage"
+    "receiveClignoDroitMessage",
+    "receiveClignoGaucheMessage"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -71,7 +74,7 @@ Q_CONSTINIT static const uint qt_meta_data_TestWidget1[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,14 +82,16 @@ Q_CONSTINIT static const uint qt_meta_data_TestWidget1[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   38,    2, 0x0a,    1 /* Public */,
-       3,    1,   39,    2, 0x0a,    2 /* Public */,
-       5,    1,   42,    2, 0x0a,    4 /* Public */,
-       8,    1,   45,    2, 0x0a,    6 /* Public */,
+       1,    0,   44,    2, 0x0a,    1 /* Public */,
+       3,    1,   45,    2, 0x0a,    2 /* Public */,
+       5,    1,   48,    2, 0x0a,    4 /* Public */,
+       8,    1,   51,    2, 0x0a,    6 /* Public */,
+       9,    1,   54,    2, 0x0a,    8 /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void, 0x80000000 | 6,    7,
 
@@ -112,6 +117,9 @@ Q_CONSTINIT const QMetaObject TestWidget1::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QMqttMessage &, std::false_type>,
         // method 'receiveClignoDroitMessage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QMqttMessage &, std::false_type>,
+        // method 'receiveClignoGaucheMessage'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QMqttMessage &, std::false_type>
     >,
     nullptr
@@ -127,6 +135,7 @@ void TestWidget1::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->updateDisplay((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 2: _t->receivedMessage((*reinterpret_cast< std::add_pointer_t<QMqttMessage>>(_a[1]))); break;
         case 3: _t->receiveClignoDroitMessage((*reinterpret_cast< std::add_pointer_t<QMqttMessage>>(_a[1]))); break;
+        case 4: _t->receiveClignoGaucheMessage((*reinterpret_cast< std::add_pointer_t<QMqttMessage>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -140,6 +149,13 @@ void TestWidget1::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             }
             break;
         case 3:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QMqttMessage >(); break;
+            }
+            break;
+        case 4:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -169,13 +185,13 @@ int TestWidget1::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

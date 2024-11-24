@@ -23,12 +23,14 @@ public slots:
     void updateDisplay(int valeur);
     void receivedMessage(const QMqttMessage &message);//, const QMqttTopicName &topic);
     void receiveClignoDroitMessage(const QMqttMessage &message);
+    void receiveClignoGaucheMessage(const QMqttMessage &message);
 
 private:
     Ui::TestWidget1 *ui;
     QMqttClient *clientMqtt;
     QMqttSubscription *souscription;
     QMqttSubscription *clignoDroit;
+    QMqttSubscription *clignoGauche;
     int compteur;
     QLabel *leftIndicator;
     QLabel *rightIndicator;

@@ -12,6 +12,8 @@ TestWidget1::TestWidget1(QWidget *parent)
     leftIndicator->setGeometry(50, 100, 50, 50);  // Position et taille
     leftIndicator->setStyleSheet("background-color: green; border-radius: 25px;");
     leftIndicator->show();
+    this->ui->clignoDroit->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-right-green.png"));
+    this->ui->clignoGauche->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-left-gray.png"));
 
     rightIndicator = new QLabel(this);
     rightIndicator->setGeometry(670, 100, 50, 50);  // Position et taille
@@ -29,22 +31,22 @@ TestWidget1::TestWidget1(QWidget *parent)
 }
 
 void TestWidget1::isConnected() {
-    QMqttTopicFilter top("topic/test");
     QMqttTopicFilter topClignoDroit("cligno/droit");
-    //this->souscription = this->clientMqtt->subscribe(top);
-    /*if (!this->souscription) {
-        QMessageBox::critical(this,"ERREUR","Souscription impossible");
-        return;
-    }
-    else
-        connect(this->souscription, &QMqttSubscription::messageReceived, this, &TestWidget1::receivedMessage);*/
     this->clignoDroit = this->clientMqtt->subscribe(topClignoDroit);
     if (!this->clignoDroit) {
         QMessageBox::critical(this,"ERREUR","Souscription cligno droit impossible");
         return;
     }
     else
-        connect(this->clignoDroit, &QMqttSubscription::messageReceived, this, &TestWidget1::receivedMessage);
+        connect(this->clignoDroit, &QMqttSubscription::messageReceived, this, &TestWidget1::receiveClignoDroitMessage);
+    QMqttTopicFilter topClignoGauche("cligno/gauche");
+    this->clignoGauche = this->clientMqtt->subscribe(topClignoGauche);
+    if (!this->clignoGauche) {
+        QMessageBox::critical(this,"ERREUR","Souscription cligno gauche impossible");
+        return;
+    }
+    else
+        connect(this->clignoGauche, &QMqttSubscription::messageReceived, this, &TestWidget1::receiveClignoGaucheMessage);
 
 }
 
@@ -53,20 +55,27 @@ void TestWidget1::updateDisplay(int valeur) {
 }
 
 void TestWidget1::receivedMessage(const QMqttMessage &message) {
-    this->rightIndicator->setVisible(!this->rightIndicator->isVisible());
     this->leftIndicator->setVisible(!this->leftIndicator->isVisible());
     this->updateDisplay(message.payload().toInt());
 }
 
 void TestWidget1::receiveClignoDroitMessage(const QMqttMessage &message) {
-    if (message.payload() == "on") {
-        this->rightIndicator->setVisible(true);
+    if (message.payload().toStdString()=="on") {
+        this->ui->clignoDroit->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-right-green.png"));
     }
-    if (message.payload() == "off") {
-        this->rightIndicator->setVisible(false);
+    else if (message.payload().toStdString() == "off") {
+        this->ui->clignoDroit->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-right-gray.png"));
     }
-    this->updateDisplay(message.payload().toInt());
+}
 
+
+void TestWidget1::receiveClignoGaucheMessage(const QMqttMessage &message) {
+    if (message.payload().toStdString()=="on") {
+        this->ui->clignoGauche->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-left-green.png"));
+    }
+    else if (message.payload().toStdString() == "off") {
+        this->ui->clignoGauche->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-left-gray.png"));
+    }
 }
 
 

@@ -21,7 +21,6 @@ public:
 public slots:
     void isConnected();
     void updateDisplay(int valeur);
-    void receivedMessage(const QMqttMessage &message);//, const QMqttTopicName &topic);
     void receiveClignoDroitMessage(const QMqttMessage &message);
     void receiveClignoGaucheMessage(const QMqttMessage &message);
 
@@ -32,7 +31,5 @@ private:
     QMqttSubscription *clignoDroit;
     QMqttSubscription *clignoGauche;
     int compteur;
-    QLabel *leftIndicator;
-    QLabel *rightIndicator;
 };
 #endif // TESTWIDGET1_H

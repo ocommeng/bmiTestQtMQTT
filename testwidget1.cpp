@@ -8,18 +8,8 @@ TestWidget1::TestWidget1(QWidget *parent)
     ui->setupUi(this);
     this->compteur = 0;
 
-    leftIndicator = new QLabel(this);
-    leftIndicator->setGeometry(50, 100, 50, 50);  // Position et taille
-    leftIndicator->setStyleSheet("background-color: green; border-radius: 25px;");
-    leftIndicator->show();
     this->ui->clignoDroit->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-right-green.png"));
     this->ui->clignoGauche->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-left-gray.png"));
-
-    rightIndicator = new QLabel(this);
-    rightIndicator->setGeometry(670, 100, 50, 50);  // Position et taille
-    rightIndicator->setStyleSheet("background-color: green; border-radius: 25px;");
-    rightIndicator->hide(); // Cacher initialement
-
 
     this->clientMqtt = new QMqttClient(this);
     this->clientMqtt->setHostname("manmiddle.local");
@@ -54,11 +44,6 @@ void TestWidget1::updateDisplay(int valeur) {
     ui->lcdNumber->display(valeur);
 }
 
-void TestWidget1::receivedMessage(const QMqttMessage &message) {
-    this->leftIndicator->setVisible(!this->leftIndicator->isVisible());
-    this->updateDisplay(message.payload().toInt());
-}
-
 void TestWidget1::receiveClignoDroitMessage(const QMqttMessage &message) {
     if (message.payload().toStdString()=="on") {
         this->ui->clignoDroit->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-right-green.png"));
@@ -67,7 +52,6 @@ void TestWidget1::receiveClignoDroitMessage(const QMqttMessage &message) {
         this->ui->clignoDroit->setPixmap(QPixmap("/home/bmi/BacASable/testwidget1/arrow-right-gray.png"));
     }
 }
-
 
 void TestWidget1::receiveClignoGaucheMessage(const QMqttMessage &message) {
     if (message.payload().toStdString()=="on") {

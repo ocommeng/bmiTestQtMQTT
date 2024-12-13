@@ -30,45 +30,26 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>100</y>
+     <y>170</y>
      <width>341</width>
      <height>181</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="clignoDroit">
+  <widget class="QLabel" name="info">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>290</y>
-     <width>91</width>
-     <height>71</height>
+     <x>320</x>
+     <y>40</y>
+     <width>111</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>arrow-right-gray.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="clignoGauche">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>290</y>
-     <width>91</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>arrow-left-gray.png</pixmap>
+    <pixmap>voyantMoteurOFF.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>

@@ -21,15 +21,13 @@ public:
 public slots:
     void isConnected();
     void updateDisplay(int valeur);
-    void receiveClignoDroitMessage(const QMqttMessage &message);
-    void receiveClignoGaucheMessage(const QMqttMessage &message);
+    void receiveTopicInfo(const QMqttMessage &message);
 
 private:
     Ui::TestWidget1 *ui;
     QMqttClient *clientMqtt;
-    QMqttSubscription *souscription;
-    QMqttSubscription *clignoDroit;
-    QMqttSubscription *clignoGauche;
-    int compteur;
+    QMqttSubscription *topicInfo;
+
+      int compteur;
 };
 #endif // TESTWIDGET1_H

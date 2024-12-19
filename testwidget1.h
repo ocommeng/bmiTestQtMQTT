@@ -6,6 +6,9 @@
 #include <QMessageBox>
 #include <QLabel>
 
+#define QPIX_PATH "/home/ocommenge/Travail/BachelorMobiliteIntelligente/BMI2_2024-2025/Projet/testwidget2"
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class TestWidget1; }
 QT_END_NAMESPACE

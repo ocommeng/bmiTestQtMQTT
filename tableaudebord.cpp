@@ -1,7 +1,7 @@
-#include "testwidget1.h"
-#include "ui_testwidget1.h"
+#include "tableaudebord.h"
+#include "ui_tableaudebord.h"
 
-TestWidget1::TestWidget1(QWidget *parent)
+TableauDeBord::TableauDeBord(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TestWidget1)
 {
@@ -22,7 +22,7 @@ TestWidget1::TestWidget1(QWidget *parent)
     connect(this->clientMqtt,SIGNAL(connected()),this,SLOT(isConnected()));
 }
 
-void TestWidget1::isConnected() {
+void TableauDeBord::isConnected() {
     //Création d'un filtre pour récupérer les messages venant sur le topic "info"
     QMqttTopicFilter topicInfo("info");
 
@@ -35,16 +35,16 @@ void TestWidget1::isConnected() {
     }
     else {
         //Sinon, connecter le signal "messageReceived" au slot "receiveTopicInfo"
-        connect(this->topicInfo, &QMqttSubscription::messageReceived,this, &TestWidget1::receiveTopicInfo );
+        connect(this->topicInfo, &QMqttSubscription::messageReceived,this, &TableauDeBord::receiveTopicInfo );
     }
 }
 
 
-void TestWidget1::updateDisplay(int valeur) {
+void TableauDeBord::updateDisplay(int valeur) {
     ui->lcdNumber->display(valeur);
 }
 
-void TestWidget1::receiveTopicInfo(const QMqttMessage &message) {
+void TableauDeBord::receiveTopicInfo(const QMqttMessage &message) {
     //si le message reçu sur le topic "info" est "on", alors on allume le voyant moteur
     if(message.payload()=="on") {
         this->ui->info->setPixmap(QPixmap(QPIX_PATH"/voyantMoteurON.png"));
@@ -56,7 +56,7 @@ void TestWidget1::receiveTopicInfo(const QMqttMessage &message) {
 }
 
 
-TestWidget1::~TestWidget1()
+TableauDeBord::~TableauDeBord()
 {
     delete ui;
 }

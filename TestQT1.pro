@@ -11,13 +11,13 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    testwidget1.cpp
+    tableaudebord.cpp
 
 HEADERS += \
-    testwidget1.h
+    tableaudebord.h
 
 FORMS += \
-    testwidget1.ui
+    tableaudebord.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
